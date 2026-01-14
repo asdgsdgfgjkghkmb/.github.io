@@ -5,93 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>四栋楼太阳能监控聚合页</title>
     <style>
-        /* 页面整体样式 */
+        /* 页面整体样式：适配电脑/手机，优化视觉体验 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background-color: #f5f5f5;
+            font-family: "Microsoft Yahei", Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px 0;
         }
-        /* 按钮栏样式 */
+
+        /* 标题样式：突出页面主题 */
+        .page-title {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* 按钮容器：灵活布局，适配不同屏幕宽度 */
         .btn-container {
-            background-color: #2f4f4f;
-            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
+            padding: 0 20px;
         }
+
+        /* 楼栋按钮：美化样式，增加交互反馈 */
         .building-btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: #4169e1;
+            padding: 14px 28px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #2c7be5;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        /* 鼠标悬浮效果：加深颜色，提升交互感 */
         .building-btn:hover {
-            background-color: #1e90ff;
+            background-color: #1d68d1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        .building-btn.active {
-            background-color: #ff6347;
+        /* 点击后状态：区分已操作按钮 */
+        .building-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        /* 监控显示区域样式 */
-        .monitor-container {
-            width: 98%;
-            height: calc(100vh - 80px);
-            margin: 10px auto;
-            border: 2px solid #2f4f4f;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .monitor-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+
+        /* 底部说明：补充使用提示 */
+        .note {
+            max-width: 800px;
+            margin: 30px auto 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding: 0 20px;
         }
     </style>
 </head>
 <body>
-    <!-- 楼号按钮栏（A1/B2/B3/B4） -->
+    <!-- 页面标题 -->
+    <h1 class="page-title">太阳能监控系统 - 四栋楼聚合页</h1>
+
+    <!-- 监控按钮容器：已填入对应楼栋链接 -->
     <div class="btn-container">
-        <button class="building-btn active" onclick="loadMonitor('monitor1')">A1栋</button>
-        <button class="building-btn" onclick="loadMonitor('monitor2')">B2栋</button>
-        <button class="building-btn" onclick="loadMonitor('monitor3')">B3栋</button>
-        <button class="building-btn" onclick="loadMonitor('monitor4')">B4栋</button>
+        <!-- A1栋（综合楼）：链接对应文档1监控页面 -->
+        <button class="building-btn" onclick="window.open('http://www.bbtyn.com.cn/wx.aspx?b=122115020248&j=00', '_blank')">A1栋（综合楼）</button>
+        
+        <!-- B2栋（1号宿舍）：链接对应文档2监控页面 -->
+        <button class="building-btn" onclick="window.open('http://www.bbtyn.com.cn/wx.aspx?b=082117203034&j=00', '_blank')">B2栋（1号宿舍）</button>
+        
+        <!-- B3栋（2号宿舍）：链接对应文档3监控页面 -->
+        <button class="building-btn" onclick="window.open('http://www.bbtyn.com.cn/wx.aspx?b=082117203753&j=00', '_blank')">B3栋（2号宿舍）</button>
+        
+        <!-- B4栋（3号宿舍）：链接对应文档4监控页面 -->
+        <button class="building-btn" onclick="window.open('http://www.bbtyn.com.cn/wx.aspx?b=042117030805&j=00', '_blank')">B4栋（3号宿舍）</button>
     </div>
 
-    <!-- 监控显示区域（已填入所有真实链接） -->
-    <div class="monitor-container">
-        <iframe id="monitor1" class="monitor-iframe" src="http://www.bbtyn.com.cn/wx.aspx?b=122115020248&j=00"></iframe>
-        <iframe id="monitor2" class="monitor-iframe" src="http://www.bbtyn.com.cn/wx.aspx?b=082117203034&j=00" style="display: none;"></iframe>
-        <iframe id="monitor3" class="monitor-iframe" src="http://www.bbtyn.com.cn/wx.aspx?b=082117203753&j=00" style="display: none;"></iframe>
-        <iframe id="monitor4" class="monitor-iframe" src="http://www.bbtyn.com.cn/wx.aspx?b=042117030805&j=00" style="display: none;"></iframe>
+    <!-- 底部使用说明 -->
+    <div class="note">
+        点击按钮将在新标签页打开对应楼栋监控页面 | 维保单位：深圳市吉日光节能科技有限公司
     </div>
-
-    <!-- 切换监控的脚本（无需修改） -->
-    <script>
-        // 保存当前激活的监控ID
-        let currentMonitor = 'monitor1';
-
-        // 加载指定监控页面
-        function loadMonitor(monitorId) {
-            // 隐藏当前显示的监控
-            document.getElementById(currentMonitor).style.display = 'none';
-            document.querySelector(`.building-btn.active`).classList.remove('active');
-
-            // 显示新选择的监控
-            document.getElementById(monitorId).style.display = 'block';
-            event.target.classList.add('active');
-
-            // 更新当前激活的监控ID
-            currentMonitor = monitorId;
-        }
-    </script>
 </body>
 </html>
